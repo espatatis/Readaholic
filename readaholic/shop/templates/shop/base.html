@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Double Navigation Bar</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'shop/styles.css' %}">
+</head>
+<body>
+	
+<div class="wrapper">
+    <div class="multi_color_border"></div>
+    <div class="top_nav">
+        <div class="left">
+          <div class="logo"><p><span>Readaholic</span></p></div>
+          <div class="search_bar">
+              <input type="text" placeholder="Search">
+          </div>
+      </div> 
+      <div class="right">
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}}">{{user}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+           <li><a href="{% url 'register' %}">Register</a></li>
+           <li><a href="{% url 'login' %}">LogIn</a></li>
+           {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="bottom_nav">
+      <ul>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Free ebooks</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Anbout us</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+  </div>
+  {% block navbar %}{% endblock %}
+  
+
+</div>
+{% block content %}{% endblock %}
+
+</body>
+</html>

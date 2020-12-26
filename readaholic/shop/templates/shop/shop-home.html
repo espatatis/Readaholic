@@ -1,0 +1,33 @@
+{% extends "shop/base.html" %}
+{% block navbar %}
+<div class="bottom_nav">
+    <ul>
+      <li><a href="#">All</a></li>
+      <li><a href="#">Romantic</a></li>
+      <li><a href="#">Technology</a></li>
+      <li><a href="#">Maths & Science</a></li>
+      <li><a href="#">Socail Science</a></li>
+      <li><a href="#">Self Help</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+    {% for book in books %}
+    <article class="media content-section">
+        <br>
+        <div>
+            <img class="img-circle" src={{ book.image.url }} alt="Generic placeholder image" width="140" height="140">
+        </div>
+        <div class="media-body" style="border-left: 5px;">
+                <h1>{{ book.price }}</h1>
+                <h2><a class="article-title" href="/shop/{{ book.id }}">{{ book.name }}</a></h2>
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{% for author in book.authors.all %}{{ author }}{% endfor %} | </a>
+            <small class="text-muted">{{ book.pubdate|date:"F d, Y" }}</small>
+        </div>
+        <p class="article-content">{{ book.desc }}</p>
+        </div>
+        <br>
+    </article>
+    {% endfor %}
+{% endblock %}
